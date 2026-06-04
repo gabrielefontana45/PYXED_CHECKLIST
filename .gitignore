@@ -6,3 +6,6 @@
 .vercel
 node_modules
 chrome_log.txt
+
+.vercel
+.env*

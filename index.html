@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pyxed AI - Decision Intelligence Cheat Sheet</title>
   <meta name="description" content="Scarica la checklist strategica per CFO, CEO e COO. Automatizza la riconciliazione dei dati finanziari ed elimina gli errori con la Decision Intelligence di Pyxed.">
-  <link rel="icon" href="/public/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
   <!-- SEO Tags -->
   <meta property="og:title" content="Pyxed AI - Decision Intelligence Cheat Sheet">
   <meta property="og:description" content="Scarica la checklist strategica per CFO, CEO e COO. Automatizza la riconciliazione dei dati finance.">
-  <meta property="og:image" content="/public/pyxed_cheat_sheet.png">
+  <meta property="og:image" content="/assets/pyxed_cheat_sheet.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <style>
@@ -427,7 +427,7 @@
 
   <header>
     <div class="logo-container">
-      <img id="logoImg" src="/public/logo.svg" alt="Pyxed Logo">
+      <img id="logoImg" src="/assets/logo.svg" alt="Pyxed Logo">
     </div>
   </header>
 
@@ -455,7 +455,7 @@
       </ul>
 
       <div class="preview-card" onclick="focusEmailInput()">
-        <img src="/public/pyxed_cheat_sheet.png" alt="Anteprima Pyxed Cheat Sheet">
+        <img src="/assets/pyxed_cheat_sheet.png" alt="Anteprima Pyxed Cheat Sheet">
       </div>
     </section>
 
@@ -500,7 +500,7 @@
         <div class="success-icon">✓</div>
         <h3>Download Sbloccato!</h3>
         <p>Grazie! Il download del PDF è iniziato automaticamente. Se non parte, clicca sul pulsante qui sotto.</p>
-        <a id="downloadLink" href="/public/pyxed_cheat_sheet.pdf" download="pyxed_cheat_sheet.pdf" class="btn-download">
+        <a id="downloadLink" href="/assets/pyxed_cheat_sheet.pdf" download="pyxed_cheat_sheet.pdf" class="btn-download">
           ⬇ Scarica PDF
         </a>
       </div>
@@ -515,7 +515,7 @@
     // Fallback: If running inside a subfolder or path where /public/ logo fails, try local relative path
     document.getElementById('logoImg').onerror = function() {
       this.onerror = null; // prevent loop
-      this.src = 'public/logo.svg';
+      this.src = 'assets/logo.svg';
     };
 
     function focusEmailInput() {
