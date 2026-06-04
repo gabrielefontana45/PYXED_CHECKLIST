@@ -25,7 +25,7 @@
       --color-border: #E2E8F0;
       
       --font-serif: 'Asul', serif;
-      --font-sans: 'Outfit', sans-serif;
+      --font-sans: 'Supreme', sans-serif;
       --shadow-sm: 0 2px 4px rgba(21, 44, 86, 0.05);
       --shadow-md: 0 10px 20px rgba(21, 44, 86, 0.08);
       --shadow-lg: 0 20px 40px rgba(21, 44, 86, 0.12);
@@ -33,7 +33,13 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
+
+    @font-face {
+      font-family: 'Supreme';
+      font-display: swap;
+      src: url('https://pyxed.ai/wp-content/uploads/2026/02/Supreme-Variable.ttf') format('truetype');
+    }
 
     * {
       box-sizing: border-box;
@@ -62,9 +68,15 @@
       border-bottom: 1px solid rgba(21, 44, 86, 0.05);
     }
 
+    .logo-container a {
+      display: inline-block;
+      text-decoration: none;
+    }
+
     .logo-container img {
       height: 36px;
       display: block;
+      border: none;
     }
 
     /* Main Container */
@@ -427,7 +439,9 @@
 
   <header>
     <div class="logo-container">
-      <img id="logoImg" src="/assets/logo.svg" alt="Pyxed Logo">
+      <a href="https://pyxed.ai/en/" target="_blank" title="Vai al sito ufficiale di Pyxed AI">
+        <img id="logoImg" src="/assets/logo.svg" alt="Pyxed Logo">
+      </a>
     </div>
   </header>
 
