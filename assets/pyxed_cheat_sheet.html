@@ -325,15 +325,26 @@
 
     /* PRINT AND SCREENSHOT STYLING */
     @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
       body {
         background-color: #ffffff;
         color: #000000;
         padding: 0;
       }
+      /* Two-column layout: nicer and shorter PDF */
+      .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+      }
       .card {
         background-color: #ffffff;
         border: 1px solid #cbd5e1;
         box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
       .item {
         color: #334155;
