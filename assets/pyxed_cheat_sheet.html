@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smetti di riconciliare dati. Inizia a decidere con Pyxed.</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #f5f8fc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --cyan: #5cd3ff;
+      --lime: #e4ff1a;
+      --text-dark: #152C56;
+      --text-gray: #4A5B73;
+      --navy-accent: #152c56;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 980px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .logo-symbol-svg {
+      width: 44px;
+      height: 44px;
+      overflow: visible; /* Prevents clipping of paths at Y=0 boundaries */
+    }
+
+    .logo-text {
+      font-family: 'Asul', serif;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.5px;
+      color: var(--navy-accent);
+    }
+
+    .tagline {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--navy-accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: 'Asul', serif;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--navy-accent);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-gray);
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* GRID SYSTEM */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 15px;
+    }
+
+    /* CARD DESIGN */
+    .card {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      position: relative;
+      padding: 18px;
+      transition: all 0.25s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0px 4px 12px rgba(21, 44, 86, 0.05);
+      border: 1px solid rgba(21, 44, 86, 0.1);
+      border-top: 4px solid var(--navy-accent);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 8px 16px rgba(21, 44, 86, 0.1);
+      border-top-color: var(--cyan);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(21, 44, 86, 0.06);
+      padding-bottom: 10px;
+    }
+
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      background-color: rgba(21, 44, 86, 0.05);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-accent);
+      font-weight: 700;
+      font-family: 'Asul', serif;
+      font-size: 14px;
+    }
+
+    .card-title {
+      font-family: 'Asul', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy-accent);
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-gray);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+
+    .item:hover {
+      color: var(--text-dark);
+    }
+
+    .item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid rgba(21, 44, 86, 0.3);
+      border-radius: 4px;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.15s ease;
+    }
+
+    .item input[type="checkbox"]:checked {
+      border-color: var(--cyan);
+      background-color: var(--cyan);
+    }
+
+    .item input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: var(--navy-accent);
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .item input[type="checkbox"]:focus {
+      box-shadow: 0 0 0 2px rgba(21, 44, 86, 0.1);
+    }
+
+    /* FOOTER / CALL TO ACTION */
+    .cta-banner {
+      background-color: var(--navy-accent);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(21, 44, 86, 0.1);
+      color: var(--text-white);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-text-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cta-title {
+      font-family: 'Asul', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .cta-subtitle {
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .cta-button {
+      background-color: var(--cyan);
+      color: var(--navy-accent);
+      font-family: 'Asul', serif;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14.5px;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 10px rgba(92, 211, 255, 0.2);
+    }
+
+    .cta-button:hover {
+      transform: scale(1.03);
+      background-color: #ffffff;
+      color: var(--navy-accent);
+      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Actions Panel for export */
+    .actions-panel {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(21, 44, 86, 0.2);
+      color: var(--navy-accent);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-family: 'Asul', serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(21, 44, 86, 0.05);
+      border-color: var(--cyan);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 10px;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      .cta-banner {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    /* PRINT AND SCREENSHOT STYLING */
+    @media print {
+      body {
+        background-color: #ffffff;
+        color: #000000;
+        padding: 0;
+      }
+      .card {
+        background-color: #ffffff;
+        border: 1px solid #cbd5e1;
+        box-shadow: none;
+      }
+      .item {
+        color: #334155;
+      }
+      .actions-panel {
+        display: none;
+      }
+      .cta-banner {
+        background-color: #152c56;
+        color: #ffffff;
+      }
+      .cta-button {
+        background: #ffffff;
+        color: #152c56;
+        border: 1px solid #152c56;
+      }
+      h1, .logo-text {
+        color: #152c56 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo-container">
+        <svg style="overflow: visible; width: 170px; height: 50px;" xmlns="http://www.w3.org/2000/svg" width="204" height="60" viewBox="0 0 204 60" fill="none"><path d="M7.89258 13.1849C7.89258 13.4816 8.00375 13.7405 8.22609 13.9627L21.4928 27.2221C21.5172 27.2716 21.5422 27.3088 21.5667 27.3333C23.2715 29.1605 23.2837 30.9383 21.6039 32.6666L8.22609 46.0371C8.00375 46.2594 7.89258 46.5183 7.89258 46.8149C7.89258 47.111 8.00375 47.3705 8.22609 47.5927L11.5612 50.926C11.7836 51.1483 12.0432 51.2594 12.3394 51.2594C12.6357 51.2594 12.8953 51.1483 13.1176 50.926L27.7184 36.3333C27.9407 36.111 28.0519 35.8516 28.0519 35.5555V24.4444C28.0519 24.1483 27.9407 23.8888 27.7184 23.6666L13.1176 9.07381C12.8953 8.85159 12.6357 8.74048 12.3394 8.74048C12.0432 8.74048 11.7836 8.85159 11.5612 9.07381L8.22609 12.4071C8.00375 12.6294 7.89258 12.8888 7.89258 13.1849ZM51.8054 12.4071L48.4702 9.07381C48.2479 8.85159 47.9888 8.74048 47.692 8.74048C47.3957 8.74048 47.1362 8.85159 46.9138 9.07381L32.3136 23.6666C32.0913 23.8888 31.9801 24.1483 31.9801 24.4444V35.5555C31.9801 35.8516 32.0913 36.111 32.3136 36.3333L46.9138 50.926C47.1362 51.1483 47.3957 51.2594 47.692 51.2594C47.9888 51.2594 48.2479 51.1483 48.4702 50.926L51.8054 47.5927C52.0277 47.3705 52.1389 47.111 52.1389 46.8149C52.1389 46.5183 52.0277 46.2594 51.8054 46.0371L38.4275 32.6666C36.7477 30.9383 36.76 29.1605 38.4648 27.3333C38.4898 27.3088 38.5142 27.2716 38.5393 27.2221L51.8054 13.9627C52.0277 13.7405 52.1389 13.4816 52.1389 13.1849C52.1389 12.8888 52.0277 12.6294 51.8054 12.4071Z" fill="#5CD3FF"></path><path d="M8.67139 27.8888C8.52297 27.7405 8.3501 27.6666 8.15277 27.6666H0.740959C0.543629 27.6666 0.370757 27.7405 0.222343 27.8888C0.0739291 28.0372 0 28.1977 0 28.3705V31.6666C0 31.8394 0.0739291 32 0.222343 32.1483C0.246801 32.1727 0.271815 32.1977 0.296272 32.2222C0.420229 32.2961 0.568087 32.3333 0.740959 32.3333H8.15277C8.32564 32.3333 8.48629 32.2961 8.63414 32.2222C8.63414 32.1977 8.64693 32.1727 8.67139 32.1483C8.8198 32 8.89373 31.8394 8.89373 31.6666V28.3705C8.89373 28.1977 8.8198 28.0372 8.67139 27.8888ZM51.4352 32.2222C51.5592 32.2961 51.707 32.3333 51.8799 32.3333H59.2917C59.4646 32.3333 59.6252 32.2961 59.7731 32.2222C59.7731 32.1977 59.7859 32.1727 59.8103 32.1483C59.9587 32 60.0327 31.8394 60.0327 31.6666V28.3705C60.0327 28.1977 59.9587 28.0372 59.8103 27.8888C59.6619 27.7405 59.489 27.6666 59.2917 27.6666H51.8799C51.6826 27.6666 51.5097 27.7405 51.3613 27.8888C51.2129 28.0372 51.1389 28.1977 51.1389 28.3705V31.6666C51.1389 31.8394 51.2129 32 51.3613 32.1483C51.3863 32.1727 51.4108 32.1977 51.4352 32.2222Z" fill="#E4FF1A"></path><path d="M32.3508 51.8517C32.3508 51.6544 32.2769 51.4817 32.1285 51.3333C31.9801 51.185 31.8194 51.1111 31.6466 51.1111H28.3487C28.1758 51.1111 28.0152 51.185 27.8667 51.3333C27.8423 51.3583 27.8173 51.3828 27.7928 51.4072C27.7189 51.5311 27.6816 51.6789 27.6816 51.8517V59.2594C27.6816 59.4322 27.7189 59.5928 27.7928 59.7406C27.8173 59.7406 27.8423 59.7533 27.8667 59.7778C28.0152 59.9261 28.1758 60 28.3487 60H31.6466C31.8194 60 31.9801 59.9261 32.1285 59.7778C32.2769 59.6294 32.3508 59.4567 32.3508 59.2594V51.8517ZM27.7928 0.296111C27.7189 0.42 27.6816 0.567778 27.6816 0.740556V8.14833C27.6816 8.32111 27.7189 8.48167 27.7928 8.62945C27.8173 8.62945 27.8423 8.64222 27.8667 8.66667C28.0152 8.815 28.1758 8.88889 28.3487 8.88889H31.6466C31.8194 8.88889 31.9801 8.815 32.1285 8.66667C32.2769 8.51833 32.3508 8.34556 32.3508 8.14833V0.740556C32.3508 0.543333 32.2769 0.370556 32.1285 0.222222C31.9801 0.0738889 31.8194 0 31.6466 0H28.3487C28.1758 0 28.0152 0.0738889 27.8667 0.222222C27.8423 0.246667 27.8173 0.271667 27.7928 0.296111Z" fill="#E4FF1A"></path><path d="M88.1709 12.7622L95.6761 12.6666C103.898 12.6666 108.009 15.7083 108.009 21.7922C108.009 25.2961 106.798 28.0194 104.376 29.9622C101.986 31.905 98.9106 32.8766 95.1502 32.8766C93.8434 32.8766 92.4732 32.7333 91.0391 32.4466V39.6611C91.0391 42.2727 91.342 44.3272 91.9474 45.8244V46.1111H85.207V45.7766C85.8124 44.1522 86.1153 41.875 86.1153 38.9444V20.6455C86.1153 17.3011 85.8602 14.7527 85.3504 13.0011V12.6666L88.1709 12.7622ZM102.608 22.27C102.608 17.4922 100.313 15.1033 95.7239 15.1033C93.3976 15.1033 91.8679 15.1511 91.1347 15.2466C91.0708 16.1066 91.0391 18.9094 91.0391 23.6555V30.2011C92.282 30.5516 93.5727 30.7266 94.9112 30.7266C97.4287 30.7266 99.3408 29.9938 100.648 28.5288C101.954 27.0316 102.608 24.9455 102.608 22.27Z" fill="#152756"></path><path d="M121.969 41.7155C125.028 32.3827 126.558 26.8405 126.558 25.0888C126.558 24.5472 126.446 24.1016 126.224 23.751V23.1777H131.339V23.751C130.86 24.1649 128.263 31.4594 123.547 45.6333C121.284 52.2583 119.993 56.2083 119.674 57.4821V57.8644L113.747 58.2944L113.699 57.9599C116.025 55.1888 118.065 51.4621 119.818 46.7799C119.627 46.2383 116.87 39.6771 111.548 27.0955C110.91 25.5983 110.225 24.5472 109.492 23.9422V23.3688L115.898 22.8433V23.4166C115.898 24.2449 116.28 25.8533 117.045 28.2422C117.81 30.5994 119.451 35.0905 121.969 41.7155Z" fill="#152756"></path><path d="M147.315 23.178H153.721V23.7513C153.052 23.9741 152.207 24.5952 151.187 25.6146C150.167 26.6335 149.179 27.8919 148.223 29.3891L145.212 33.9758L148.749 38.658C151.84 42.7669 153.864 45.0602 154.82 45.538V46.1113H146.837V45.538C146.677 43.9769 146.088 42.5119 145.068 41.1424L142.2 37.3202L139.38 41.668C138.36 43.2602 137.818 44.5502 137.754 45.538V46.1113H131.349V45.538C131.795 45.3469 132.544 44.7891 133.595 43.8658C134.679 42.9102 135.619 41.8269 136.416 40.6169L140.24 34.6446L136.32 29.2935C135.396 28.0191 134.424 26.8408 133.404 25.758C132.416 24.643 131.715 23.9741 131.301 23.7513V23.178H138.519V23.7513C138.583 24.643 139.332 26.0446 140.766 27.9558L143.252 31.348L145.69 27.6213C146.71 26.0285 147.251 24.7385 147.315 23.7513V23.178Z" fill="#152756"></path><path d="M166.986 46.6368C163.64 46.6368 161.027 45.6018 159.147 43.5313C157.267 41.4607 156.326 38.7374 156.326 35.3613C156.326 31.9529 157.378 28.9752 159.481 26.4268C161.585 23.8785 164.198 22.6046 167.321 22.6046C173.026 22.6046 175.878 26.1241 175.878 33.1635L174.109 34.8835H161.393C161.393 37.5591 161.967 39.5657 163.114 40.9035C164.262 42.2413 165.807 42.9102 167.751 42.9102C168.516 42.9102 169.6 42.6874 171.002 42.2413C172.404 41.7635 173.647 41.2063 174.731 40.5691L175.926 42.3846C175.32 42.9896 173.998 43.8496 171.958 44.9646C169.95 46.0796 168.293 46.6368 166.986 46.6368ZM166.461 24.9935C165.122 24.9935 164.087 25.2963 163.353 25.9013C162.748 26.7296 162.27 27.7802 161.919 29.0546C161.569 30.3285 161.393 31.4435 161.393 32.3991L171.193 32.0168C171.193 27.3346 169.616 24.9935 166.461 24.9935Z" fill="#152756"></path><path d="M190.035 46.6367C186.721 46.6367 184.251 45.5217 182.625 43.2923C181 41.0306 180.188 38.1961 180.188 34.7878C180.188 31.3795 181.224 28.4973 183.295 26.14C185.398 23.7828 188.043 22.6045 191.23 22.6045C193.015 22.6045 194.784 22.9073 196.536 23.5123V18.0656C196.536 15.5173 195.804 13.5428 194.337 12.1411V11.5678L200.887 10.4211L201.173 10.8989C201.078 11.8228 201.03 13.1445 201.03 14.8645V38.5145C201.03 39.9478 201.253 41.3173 201.699 42.6234C202.146 43.8973 202.719 44.7734 203.42 45.2511L203.516 45.7289L198.305 46.9711C197.987 46.175 197.588 44.8689 197.11 43.0534C194.656 45.4423 192.298 46.6367 190.035 46.6367ZM187.788 41.6678C188.713 42.6234 189.972 43.1011 191.565 43.1011C193.158 43.1011 194.815 42.3367 196.536 40.8078V27.3345C194.879 26.1239 192.808 25.5189 190.322 25.5189C188.888 25.5189 187.788 25.8056 187.023 26.3789C185.844 28.2584 185.255 30.8539 185.255 34.1667C185.255 37.4795 186.1 39.9795 187.788 41.6678Z" fill="#152756"></path></svg>
+      </div>
+      </div>
+      <div class="tagline">Decision Intelligence Platform</div>
+      <h1>Smetti di riconciliare dati. Inizia a decidere con Pyxed.</h1>
+      <p class="subtitle">Guida strategica e Checklist per CFO, CEO e COO. Ottimizza le decisioni finanziarie ed elimina la riconciliazione manuale dei dati.</p>
+    </header>
+
+    <!-- 3x3 GRID -->
+    <main class="grid">
+      
+      <!-- Box 1: Setup -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">01</div>
+          <h2 class="card-title">Configurazione</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Configura accessi sicuri (SSO).</span></li>
+          <li class="item"><input type="checkbox"><span>Imposta valute e periodi contabili.</span></li>
+          <li class="item"><input type="checkbox"><span>Definisci tolleranze errori automatiche.</span></li>
+          <li class="item"><input type="checkbox"><span>Attiva alert per scostamenti finanziari.</span></li>
+          <li class="item"><input type="checkbox"><span>Inizializza log di tracciamento storici.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 2: Connettori -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">02</div>
+          <h2 class="card-title">Connettori</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Collega ERP (SAP, NetSuite, Oracle).</span></li>
+          <li class="item"><input type="checkbox"><span>Integra pipeline e dati commerciali.</span></li>
+          <li class="item"><input type="checkbox"><span>Connetti database SQL e Snowflake.</span></li>
+          <li class="item"><input type="checkbox"><span>Configura upload Excel, CSV e PDF.</span></li>
+          <li class="item"><input type="checkbox"><span>Abilita API native per flussi custom.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 3: Riconciliazione -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">03</div>
+          <h2 class="card-title">Riconciliazione</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Elimina rumore nei dati grezzi.</span></li>
+          <li class="item"><input type="checkbox"><span>Definisci regole matching transazionale.</span></li>
+          <li class="item"><input type="checkbox"><span>Esegui quadrature fattura-pagamento.</span></li>
+          <li class="item"><input type="checkbox"><span>Rileva e isola all'istante le anomalie.</span></li>
+          <li class="item"><input type="checkbox"><span>Genera report di quadratura per audit.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 4: Skill AI -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">04</div>
+          <h2 class="card-title">Skill AI</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Attiva agenti specializzati per area.</span></li>
+          <li class="item"><input type="checkbox"><span>Imposta logiche aziendali nei prompt.</span></li>
+          <li class="item"><input type="checkbox"><span>Valida risposte su dati storici.</span></li>
+          <li class="item"><input type="checkbox"><span>Configura i guardrails comportamentali.</span></li>
+          <li class="item"><input type="checkbox"><span>Crea workflow in linguaggio naturale.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 5: Supporto Decisionale -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">05</div>
+          <h2 class="card-title">Supporto Decisionale</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Interroga i dati consolidati via chat.</span></li>
+          <li class="item"><input type="checkbox"><span>Simula scenari What-if e sensitività.</span></li>
+          <li class="item"><input type="checkbox"><span>Analizza scostamenti e variazioni KPI.</span></li>
+          <li class="item"><input type="checkbox"><span>Genera briefing per la direzione.</span></li>
+          <li class="item"><input type="checkbox"><span>Attiva raccomandazioni operative.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 6: Excel & Report -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">06</div>
+          <h2 class="card-title">Excel & Report</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Esporta formule e logiche in Excel.</span></li>
+          <li class="item"><input type="checkbox"><span>Genera report PDF e Google Sheets.</span></li>
+          <li class="item"><input type="checkbox"><span>Crea presentazioni per CdA in un clic.</span></li>
+          <li class="item"><input type="checkbox"><span>Esporta record aggregati e protetti.</span></li>
+          <li class="item"><input type="checkbox"><span>Visualizza grafici e trend dinamici.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 7: Chiusure & Audit -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">07</div>
+          <h2 class="card-title">Chiusure & Audit</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Crea workspace per chiusure periodiche.</span></li>
+          <li class="item"><input type="checkbox"><span>Centralizza verbali e policy locali.</span></li>
+          <li class="item"><input type="checkbox"><span>Condividi dati e task con revisori.</span></li>
+          <li class="item"><input type="checkbox"><span>Monitora progressi delle quadrature.</span></li>
+          <li class="item"><input type="checkbox"><span>Archivia in sicurezza flussi approvati.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 8: Analisi di Mercato -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">08</div>
+          <h2 class="card-title">Analisi di Mercato</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Analizza bilanci pubblici dei competitor.</span></li>
+          <li class="item"><input type="checkbox"><span>Traccia tassi e indici macroeconomici.</span></li>
+          <li class="item"><input type="checkbox"><span>Effettua benchmark su trend di settore.</span></li>
+          <li class="item"><input type="checkbox"><span>Crea report a supporto del budget.</span></li>
+          <li class="item"><input type="checkbox"><span>Verifica la compliance IFRS/GAAP.</span></li>
+        </ul>
+      </section>
+
+      <!-- Box 9: Sicurezza & Compliance -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-icon">09</div>
+          <h2 class="card-title">Sicurezza & Compliance</h2>
+        </div>
+        <ul class="checklist">
+          <li class="item"><input type="checkbox"><span>Garantisci conformità GDPR e AI Act.</span></li>
+          <li class="item"><input type="checkbox"><span>Elabora dati sensibili in locale.</span></li>
+          <li class="item"><input type="checkbox"><span>Configura guardrails anti-allucinazione.</span></li>
+          <li class="item"><input type="checkbox"><span>Ottimizza contesto e token di sessione.</span></li>
+          <li class="item"><input type="checkbox"><span>Monitora i log di audit trail completo.</span></li>
+        </ul>
+      </section>
+
+    </main>
+
+
+
+  </div>
+
+  <!-- Floating download / print button (hidden when printing) -->
+  <button id="savePdfBtn" onclick="window.print()" aria-label="Salva come PDF"
+    style="position:fixed;bottom:24px;right:24px;z-index:9999;background-color:#5CD3FF;color:#152756;border:none;
+    padding:14px 22px;border-radius:999px;font-family:inherit;font-weight:700;font-size:0.95rem;cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);">
+    ⬇ Salva come PDF
+  </button>
+  <style>@media print { #savePdfBtn { display: none !important; } }</style>
+
+</body>
+</html>

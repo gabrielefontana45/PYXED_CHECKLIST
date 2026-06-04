@@ -506,10 +506,13 @@
       <!-- Success state -->
       <div id="successState" class="success-container">
         <div class="success-icon">✓</div>
-        <h3>Download Sbloccato!</h3>
-        <p>Grazie! Il download del PDF è iniziato automaticamente. Se non parte, clicca sul pulsante qui sotto.</p>
-        <a id="downloadLink" href="/assets/pyxed_cheat_sheet.pdf" download="pyxed_cheat_sheet.pdf" class="btn-download">
-          ⬇ Scarica PDF
+        <h3>Cheat Sheet Sbloccata!</h3>
+        <p>Grazie! La Cheat Sheet interattiva si è aperta in una nuova scheda: spunta le voci e salvala in PDF. Se non si apre, usa i pulsanti qui sotto.</p>
+        <a id="openSheetLink" href="/assets/pyxed_cheat_sheet.html" target="_blank" rel="noopener" class="btn-download">
+          📄 Apri la Cheat Sheet interattiva
+        </a>
+        <a id="downloadLink" href="/assets/pyxed_cheat_sheet.pdf" download="pyxed_cheat_sheet.pdf" class="btn-download" style="margin-top: 12px;">
+          ⬇ Scarica in PDF
         </a>
       </div>
     </section>
@@ -582,9 +585,9 @@
           // Hide form, show success state
           leadFormContainer.style.display = 'none';
           successState.style.display = 'flex';
-          
-          // Trigger download
-          downloadLink.click();
+
+          // Open the interactive cheat sheet in a new tab so the lead can use it
+          window.open('/assets/pyxed_cheat_sheet.html', '_blank', 'noopener');
         } else {
           showError(result.error || 'Si è verificato un errore durante l\'invio. Riprova più tardi.');
         }
