@@ -23,13 +23,14 @@ module.exports = async (req, res) => {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const toEmail = process.env.NOTIFICATION_EMAIL;
+  // Casella centralizzata per tutti i lead. Sovrascrivibile via env var su Vercel.
+  const toEmail = process.env.NOTIFICATION_EMAIL || 'info@nixinn.com';
 
-  if (!apiKey || !toEmail) {
-    console.error('Environment variables RESEND_API_KEY or NOTIFICATION_EMAIL are missing');
-    return res.status(500).json({ 
-      success: false, 
-      error: 'Configurazione server incompleta (variabili d\'ambiente mancanti)' 
+  if (!apiKey) {
+    console.error('Environment variable RESEND_API_KEY is missing');
+    return res.status(500).json({
+      success: false,
+      error: 'Configurazione server incompleta (variabili d\'ambiente mancanti)'
     });
   }
 
@@ -37,6 +38,7 @@ module.exports = async (req, res) => {
     const emailBody = {
       from: 'Pyxed Leads <onboarding@resend.dev>',
       to: toEmail,
+      reply_to: email,
       subject: '🚀 Nuovo Lead Acquisito - Cheat Sheet',
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #E2E8F0; border-radius: 8px;">
