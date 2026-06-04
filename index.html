@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyxed AI - Decision Intelligence Cheat Sheet</title>
+  <meta name="description" content="Scarica la checklist strategica per CFO, CEO e COO. Automatizza la riconciliazione dei dati finanziari ed elimina gli errori con la Decision Intelligence di Pyxed.">
+  <link rel="icon" href="/public/logo.svg" type="image/svg+xml">
+  <!-- SEO Tags -->
+  <meta property="og:title" content="Pyxed AI - Decision Intelligence Cheat Sheet">
+  <meta property="og:description" content="Scarica la checklist strategica per CFO, CEO e COO. Automatizza la riconciliazione dei dati finance.">
+  <meta property="og:image" content="/public/pyxed_cheat_sheet.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --color-navy: #152C56;
+      --color-cyan: #5CD3FF;
+      --color-lime: #E4FF1A;
+      --color-dark: #0F1F3D;
+      --color-text-muted: #5A6E85;
+      --color-bg-light: #F4F7FB;
+      --color-white: #FFFFFF;
+      --color-border: #E2E8F0;
+      
+      --font-serif: 'Asul', serif;
+      --font-sans: 'Outfit', sans-serif;
+      --shadow-sm: 0 2px 4px rgba(21, 44, 86, 0.05);
+      --shadow-md: 0 10px 20px rgba(21, 44, 86, 0.08);
+      --shadow-lg: 0 20px 40px rgba(21, 44, 86, 0.12);
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg-light);
+      color: var(--color-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    header {
+      padding: 24px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border-bottom: 1px solid rgba(21, 44, 86, 0.05);
+    }
+
+    .logo-container img {
+      height: 36px;
+      display: block;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      padding: 60px 8%;
+      max-width: 1400px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      main {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 5%;
+      }
+    }
+
+    /* Left Side: Content & Preview */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background-color: var(--color-lime);
+      color: var(--color-navy);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 4px;
+      width: fit-content;
+      font-family: var(--font-sans);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--color-navy);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+    }
+
+    /* Key points */
+    .points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1.05rem;
+    }
+
+    .point-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: var(--color-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-navy);
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    /* Right Side: Form and Preview Visual */
+    .card-container {
+      position: relative;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    /* Interactive image card hover animation */
+    .preview-card {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      cursor: pointer;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-cyan);
+    }
+
+    .preview-card img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Form Styles */
+    .form-header {
+      margin-bottom: 28px;
+    }
+
+    .form-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      color: var(--color-navy);
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--color-dark);
+      background-color: var(--color-bg-light);
+      transition: var(--transition);
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--color-navy);
+      background-color: var(--color-white);
+      box-shadow: 0 0 0 3px rgba(92, 211, 255, 0.3);
+    }
+
+    /* Submit Button styling - Premium Micro-animations */
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background-color: var(--color-navy);
+      color: var(--color-white);
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-submit:hover {
+      background-color: var(--color-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(21, 44, 86, 0.2), 0 0 0 2px var(--color-cyan);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      background-color: var(--color-text-muted);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--color-white);
+      animation: spin 1s ease-in-out infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Privacy Consent */
+    .privacy-consent {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .privacy-consent input {
+      margin-top: 2px;
+      accent-color: var(--color-navy);
+    }
+
+    /* Success & Unlock states */
+    .success-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background-color: var(--color-lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-navy);
+      font-size: 2.2rem;
+      box-shadow: var(--shadow-md);
+      animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .success-container h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--color-navy);
+    }
+
+    .success-container p {
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      max-width: 320px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background-color: var(--color-cyan);
+      color: var(--color-navy);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .btn-download:hover {
+      background-color: var(--color-white);
+      border-color: var(--color-cyan);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Error Message */
+    .error-msg {
+      background-color: #FEE2E2;
+      color: #991B1B;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #FCA5A5;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      background: transparent;
+      border-top: 1px solid rgba(21, 44, 86, 0.05);
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--color-navy);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img id="logoImg" src="/public/logo.svg" alt="Pyxed Logo">
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-content">
+      <div class="badge">Cheat Sheet Gratuita</div>
+      <h1>Trasforma i tuoi dati finanziari in decisioni strategiche.</h1>
+      <p class="hero-description">
+        Elimina il rumore e la riconciliazione manuale. Scarica la guida definitiva in italiano per implementare la Decision Intelligence e automatizzare il controllo dei dati nella tua azienda.
+      </p>
+
+      <ul class="points-list">
+        <li class="point-item">
+          <div class="point-icon">✓</div>
+          <div><strong>Configurazione & Collegamento:</strong> Setup SSO, tolleranza errori e integrazione nativa ERP (SAP, NetSuite, Oracle) e database.</div>
+        </li>
+        <li class="point-item">
+          <div class="point-icon">✓</div>
+          <div><strong>Riconciliazione AI:</strong> Riconciliazione automatica fattura-pagamento ed eliminazione del rumore dei dati transazionali.</div>
+        </li>
+        <li class="point-item">
+          <div class="point-icon">✓</div>
+          <div><strong>Supporto Decisionale:</strong> Scenari What-if, report per il CdA in 1-click e conformità GDPR / AI Act integrata.</div>
+        </li>
+      </ul>
+
+      <div class="preview-card" onclick="focusEmailInput()">
+        <img src="/public/pyxed_cheat_sheet.png" alt="Anteprima Pyxed Cheat Sheet">
+      </div>
+    </section>
+
+    <section class="card-container">
+      <!-- Form state -->
+      <div id="leadFormContainer">
+        <div class="form-header">
+          <h2>Ottieni la Cheat Sheet</h2>
+          <p>Inserisci i tuoi dati per sbloccare istantaneamente il download gratuito del PDF.</p>
+        </div>
+
+        <div id="errorBanner" class="error-msg">
+          <span>⚠️</span>
+          <span id="errorText">Si è verificato un errore. Riprova.</span>
+        </div>
+
+        <form id="leadForm" onsubmit="submitLead(event)">
+          <div class="input-group">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" required placeholder="Es. Mario Rossi">
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email Aziendale</label>
+            <input type="email" id="email" required placeholder="Es. mario.rossi@azienda.it">
+          </div>
+
+          <div class="privacy-consent">
+            <input type="checkbox" id="privacy" required checked>
+            <label for="privacy">Acconsento al trattamento dei dati personali in conformità alla privacy policy di Pyxed.</label>
+          </div>
+
+          <button type="submit" id="btnSubmit" class="btn-submit" style="margin-top: 24px;">
+            <span class="spinner" id="btnSpinner"></span>
+            <span id="btnText">Scarica Gratis (PDF)</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div id="successState" class="success-container">
+        <div class="success-icon">✓</div>
+        <h3>Download Sbloccato!</h3>
+        <p>Grazie! Il download del PDF è iniziato automaticamente. Se non parte, clicca sul pulsante qui sotto.</p>
+        <a id="downloadLink" href="/public/pyxed_cheat_sheet.pdf" download="pyxed_cheat_sheet.pdf" class="btn-download">
+          ⬇ Scarica PDF
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 <a href="https://pyxed.ai" target="_blank">Pyxed AI</a>. Tutti i diritti riservati. | Decision Intelligence for Finance</p>
+  </footer>
+
+  <script>
+    // Fallback: If running inside a subfolder or path where /public/ logo fails, try local relative path
+    document.getElementById('logoImg').onerror = function() {
+      this.onerror = null; // prevent loop
+      this.src = 'public/logo.svg';
+    };
+
+    function focusEmailInput() {
+      const emailField = document.getElementById('email');
+      if (emailField) {
+        emailField.focus();
+        emailField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    async function submitLead(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const privacyChecked = document.getElementById('privacy').checked;
+      const errorBanner = document.getElementById('errorBanner');
+      const errorText = document.getElementById('errorText');
+      const btnSubmit = document.getElementById('btnSubmit');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const btnText = document.getElementById('btnText');
+      const leadFormContainer = document.getElementById('leadFormContainer');
+      const successState = document.getElementById('successState');
+      const downloadLink = document.getElementById('downloadLink');
+
+      if (!name || !email) {
+        showError('Per favore, compila tutti i campi richiesti.');
+        return;
+      }
+
+      if (!privacyChecked) {
+        showError('È necessario accettare il trattamento dei dati.');
+        return;
+      }
+
+      // Hide error
+      errorBanner.style.display = 'none';
+
+      // Set loading state
+      btnSubmit.disabled = true;
+      btnSpinner.style.display = 'block';
+      btnText.textContent = 'Elaborazione...';
+
+      try {
+        const response = await fetch('/api/save-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Hide form, show success state
+          leadFormContainer.style.display = 'none';
+          successState.style.display = 'flex';
+          
+          // Trigger download
+          downloadLink.click();
+        } else {
+          showError(result.error || 'Si è verificato un errore durante l\'invio. Riprova più tardi.');
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        showError('Errore di connessione. Controlla la tua rete e riprova.');
+      } finally {
+        // Reset button
+        btnSubmit.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = 'Scarica Gratis (PDF)';
+      }
+    }
+
+    function showError(message) {
+      const errorBanner = document.getElementById('errorBanner');
+      const errorText = document.getElementById('errorText');
+      errorText.textContent = message;
+      errorBanner.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
